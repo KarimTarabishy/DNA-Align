@@ -9,7 +9,10 @@ use Pair;
 use AlignAlgorithm;
 use Reader;
 
+## CONFIG ##
 my %scores = ('int_gap' => -5, 'term_gap' => 0, 'match' => 5, 'miss' => -4);
+my @files = ("seq/Sequence_Pair_1.txt","seq/Sequence_Pair_2.txt","seq/Sequence_Pair_3.txt");
+## END CONFIG ##
 
 #initialize different algorithms
 my $global_algo = AlignAlgorithm->new(
@@ -31,7 +34,7 @@ my $local_algo = AlignAlgorithm->new(
 
 
 # read pairs from file
-my $pairs = Reader->getPairsFromFile("seq/Sequence_Pair_1.txt","seq/Sequence_Pair_2.txt","seq/Sequence_Pair_3.txt");
+my $pairs = Reader->getPairsFromFile(@files);
 # initialize the dp algoritm
 my $dp = DpAlignment->new(scores => \%scores);
 
@@ -62,4 +65,3 @@ foreach my $pair (@$pairs)
 }
 
 close $fh;
-
